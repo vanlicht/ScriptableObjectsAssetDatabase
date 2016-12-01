@@ -10,18 +10,29 @@ public class TestManager : MonoBehaviour
 
     #region Private Variable
     #endregion
-     
+
     #region Main Methods
     // Use this for initialization
+    void Awake()
+    {
+        Instance = this;
+    }
+
     void Start()
     {
-        Instance = this; 
+        if(curClass != null)
+        {
+            curClass.StartClass();
+        } 
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (curClass != null)
+        {
+            curClass.UpdateClass();
+        }
     }
 
     #endregion
