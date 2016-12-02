@@ -9,6 +9,9 @@ public class TestManager : MonoBehaviour
     #endregion
 
     #region Private Variable
+    Vector3 TransformValue;
+    Vector3 RotationValue;
+    Vector3 ScaleValue;
     #endregion
 
     #region Main Methods
@@ -31,11 +34,13 @@ public class TestManager : MonoBehaviour
     {
         if (curClass != null)
         {
-            curClass.UpdateClass();
+            TransformValue = this.gameObject.transform.localPosition;
+            RotationValue = this.gameObject.transform.localEulerAngles;
+            ScaleValue = this.gameObject.transform.localScale;
+            curClass.UpdateClass(TransformValue, RotationValue, ScaleValue);
         }
     }
-
-    #endregion
+#endregion
 
     #region Utility Methods
     void OnDrawGizmos() { }

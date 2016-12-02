@@ -13,6 +13,10 @@ public class DataClass : ScriptableObject
     public float myFloat = 1.0f;
     public Color myColor = Color.white;
     public string curText = "Enter Text Here...";
+
+    public Vector3 myTransform;
+    public Vector3 myRotation;
+    public Vector3 myScale;
 #endregion
 
 #region Private Variable
@@ -24,9 +28,12 @@ public class DataClass : ScriptableObject
         Debug.Log("Started Class...");
     }
 
-    public void UpdateClass()
+    public void UpdateClass(Vector3 TransformValue, Vector3 RoatationValue, Vector3 ScaleValue)
     {
         Debug.Log("Updating Class...");
+        myTransform = TransformValue;
+        myRotation = RoatationValue;
+        myScale = ScaleValue;
     }
     #endregion
 
@@ -34,11 +41,13 @@ public class DataClass : ScriptableObject
 #if UNITY_EDITOR
     public void OnDrawEditorGUI()
     {
-        myColor = EditorGUILayout.ColorField("My Color: ", myColor);
-        myFloat = EditorGUILayout.FloatField("My Float: ", myFloat);
-        GUILayout.Space(10);
-        curText = EditorGUILayout.TextArea(curText, GUILayout.Height(100));
-
+        //myColor = EditorGUILayout.ColorField("My Color: ", myColor);
+        //myFloat = EditorGUILayout.FloatField("My Float: ", myFloat);
+        //GUILayout.Space(10);
+        //curText = EditorGUILayout.TextArea(curText, GUILayout.Height(100));
+        myTransform = EditorGUILayout.Vector3Field("Position", myTransform);
+        myRotation = EditorGUILayout.Vector3Field("Rotateion", myRotation);
+        myScale = EditorGUILayout.Vector3Field("Scale", myScale);
         //set this so when restart Unity the data is retained
         EditorUtility.SetDirty(this);
     }
